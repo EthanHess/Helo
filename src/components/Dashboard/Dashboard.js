@@ -1,18 +1,32 @@
 import React, { Component } from 'react'; 
+import axios from 'axios'; 
+import { connect } from 'react-redux'; 
+import { updateUser } from '../../ducks/reducer';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
     constructor() {
         super()
         this.state = {  //TODO, toggle option for "My Posts"
             searchText: '', 
-            posts: []
+            posts: [], 
+            myPosts: true
         }
 
         this.fetchAllPosts = this.fetchAllPosts.bind(this); 
     }
 
-    fetchAllPosts() {
+    componentDidMount() {
+        //fetch?
+    }
 
+    fetchAllPosts() {
+        let myPosts = this.state.myPosts; //boolean (add to query string)
+        const urlString = `/api/posts?uid=${this.props.id}`
+        axios.get(urlString).then(response => {
+            this.setState({ posts: response.data }); 
+        }).catch(error => {
+            console.log('error', error); 
+        }); 
     }
 
     updateSearchText = (val) => {
@@ -28,6 +42,7 @@ export default class Dashboard extends Component {
     }
 
     render() {
+        console.log('this.props', this.props); 
         const postsArray = this.state.posts.map(post => {
             return (
                 <div>
@@ -48,3 +63,12 @@ export default class Dashboard extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    const { id } = state;
+    return {
+      id
+    }
+}
+
+export default connect(mapStateToProps, { updateUser })(Dashboard)

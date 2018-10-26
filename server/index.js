@@ -17,6 +17,11 @@ massive(process.env.CONNECTION_STRING).then(database => {
 //Networking
 app.post('/api/login', controller.createUser); 
 app.post('/api/register', controller.createUser); 
+app.post('/api/posts', controller.createPost); 
+
+app.get('/api/posts/', controller.getUsersPosts); 
+app.get('/api/posts/', controller.getAllPosts); 
+
 
 //Listen
 const PORT = 4000; 

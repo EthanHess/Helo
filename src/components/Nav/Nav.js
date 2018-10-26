@@ -9,7 +9,8 @@ const Nav = (props) => {
     return (
         <div>
           { props.location.pathname === '/' ? <div></div> : <div className="navbar">
-          Nav
+          <div>{this.props.username}</div>
+          <img src={this.props.profilePic} alt=""/>
           <button onClick={this.props.homeFn}>Home</button>
           <button onClick={this.props.newPostFn}>New Post</button>
           <button onClick={this.props.logoutFn}>Logout</button>
