@@ -1,0 +1,1 @@
+select * from helo_posts where auth0_id = ${auth0Id} limit 1; 

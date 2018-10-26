@@ -4,20 +4,20 @@ const initialState = {
     profilePic: null
 }; 
 
-const USER_LOGIN = "USER_LOGIN"; 
+const USER_UPDATE = "USER_UPDATE"; 
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        // case USER_LOGIN:
-        //     return {...state, user: action.payload }
+        case USER_UPDATE:
+            return {...state, user: action.payload }
         default: 
             return state; 
     }
 }
 
-export function userLogin(user) {
+export function updateUser(userId, username, profilePic) {
     return {
-        type: USER_LOGIN, 
-        payload: user
+        type: USER_UPDATE, 
+        payload: { userId, username, profilePic }
     }
 }

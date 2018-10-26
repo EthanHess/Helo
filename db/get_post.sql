@@ -1,0 +1,1 @@
+select * from helo_posts where author_id = ${author_id} limit 1; 
